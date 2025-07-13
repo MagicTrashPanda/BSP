@@ -1,0 +1,16 @@
+{
+    "name": "com.gamejamhq.bsp",
+    "version": "1.0.0",
+    "displayName": "BSP",
+    "description": "This is a Basic Script Package designed to cut down on coding time",
+    "unity": "6000.0",
+    "documentationUrl": "https://example.com/",
+    "changelogUrl": "https://example.com/changelog.html",
+    "licensesUrl": "https://example.com/licensing.html",
+    "dependencies": {},
+   "keywords": [],
+    "author": {
+      "name": "Lucas Rachlinski",
+      "email": "cmc5039@gmail.com"
+    }
+  }
