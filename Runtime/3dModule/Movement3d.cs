@@ -104,6 +104,10 @@ public class Movement3d : MonoBehaviour
 
     void SpeedCalculation(float directionalSpeed, string direction)
     {
+        if(!speedSmoothingEnabled)
+        {
+            speedMultiplier = 1f;
+        }
         targetSpeed = speedMultiplier * baseSpeed * directionalSpeed * sprintSpeedMultiplier;
         Vector3 velocity = rb.linearVelocity;
         switch (direction)
