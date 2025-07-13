@@ -10,9 +10,9 @@ The **Basic Script Package (BSP)** is a Unity package designed to streamline dev
 
 ## Installation
 
-1. Clone or download this repository into your Unity project's `Packages` folder.
+1. Clone or download this repository anywhere.
 2. Ensure your Unity version is compatible with the package (minimum version: `6000.0` as per `package.json`).
-3. Add the package to your Unity project via the Unity Package Manager.
+3. Add the local package to your Unity project via the Unity Package Manager.
 
 ## Scripts Overview
 

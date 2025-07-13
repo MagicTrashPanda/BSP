@@ -11,7 +11,7 @@ public class Movement3d : MonoBehaviour
     [Header("Modules")]
     [SerializeField] private bool jumpEnabled;
     [SerializeField] private bool sprintEnabled;
-    [SerializeField] private bool speedSmoothing;
+    [SerializeField] private bool speedSmoothingEnabled;
     [Header("Directional Movement")]
     [SerializeField] private float forward;
     [SerializeField] private float horizontal;
@@ -57,7 +57,7 @@ public class Movement3d : MonoBehaviour
             HandleSprint();
         }
         GetGrounded();
-        if (speedSmoothing)
+        if (speedSmoothingEnabled)
         {
             SpeedSmoothing();
         }
