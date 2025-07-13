@@ -8,6 +8,10 @@ public class Movement3d : MonoBehaviour
 {
     #region Variables
 
+    [Header("Modules")]
+    [SerializeField] private bool jumpEnabled;
+    [SerializeField] private bool sprintEnabled;
+    [SerializeField] private bool speedSmoothing;
     [Header("Directional Movement")]
     [SerializeField] private float forward;
     [SerializeField] private float horizontal;
@@ -20,6 +24,9 @@ public class Movement3d : MonoBehaviour
     [Header("Movement Modifiers")]
     [SerializeField] private float speedMultiplier;
     [SerializeField] private float inertiaMultiplier = 1;
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float sprintSpeedMultiplier = 1f;
+    [SerializeField] private bool sprintPressed;
    
     [Header("Position Checks")]
     [SerializeField] private bool grounded;
@@ -41,7 +48,19 @@ public class Movement3d : MonoBehaviour
     void Update()
     {
         HandleInput();
-        SpeedSmoothing();
+        if (jumpEnabled)
+        {
+            HandleJump();
+        }
+        if (sprintEnabled)
+        {
+            HandleSprint();
+        }
+        GetGrounded();
+        if (speedSmoothing)
+        {
+            SpeedSmoothing();
+        }
         ApplyMovement();
     }
 
@@ -54,49 +73,38 @@ public class Movement3d : MonoBehaviour
     {
         horizontal = 0;
         forward = 0;
+
         if (Input.GetKey(KeyCode.A))
         {
             horizontal = -1f;
             isMoving = true;
         }
 
-        else if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             horizontal = 1f;
             isMoving = true;
         }
-        else if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             forward = 1f;
             isMoving = true;
         }
-        else if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
             forward = -1f;
             isMoving = true;
         }
-        else
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S))
         {
             isMoving = false;
         }
     }
-    
-    void SpeedSmoothing()
-    {
-        if (isMoving && speedMultiplier < 1)
-        {
-            speedMultiplier += Time.deltaTime * inertiaMultiplier;
-        }
-        else if (!isMoving && speedMultiplier > 0)
-        {
-            speedMultiplier -= Time.deltaTime * 2;
-            if (speedMultiplier < 0) speedMultiplier = 0;
-        }
-    }
+
 
     void SpeedCalculation(float directionalSpeed, string direction)
     {
-        targetSpeed = speedMultiplier * baseSpeed * directionalSpeed;
+        targetSpeed = speedMultiplier * baseSpeed * directionalSpeed * sprintSpeedMultiplier;
         Vector3 velocity = rb.linearVelocity;
         switch (direction)
         {
@@ -114,6 +122,45 @@ public class Movement3d : MonoBehaviour
         SpeedCalculation(horizontal, "x");
         SpeedCalculation(forward, "z");
     }
+    #endregion
+
+    #region Optional Movement
+
+    void HandleJump()
+    {
+        if (grounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            grounded = false;
+        }
+    }
+
+    void HandleSprint()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            sprintPressed = true;
+            sprintSpeedMultiplier = 2f;
+        }
+        else
+        {
+            sprintPressed = false;
+            sprintSpeedMultiplier = 1f;
+        }
+    }
+    void SpeedSmoothing()
+    {
+        if (isMoving && speedMultiplier < 1)
+        {
+            speedMultiplier += Time.deltaTime * inertiaMultiplier;
+        }
+        else if (!isMoving && speedMultiplier > 0)
+        {
+            speedMultiplier -= Time.deltaTime * 2;
+            if (speedMultiplier < 0) speedMultiplier = 0;
+        }
+    }
+
     #endregion
 
     #region Checks
