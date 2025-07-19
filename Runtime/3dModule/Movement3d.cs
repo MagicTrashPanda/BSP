@@ -20,7 +20,7 @@ namespace _3dModule
         [SerializeField] private float targetSpeed;
    
         [Header("Movement Modifiers")]
-        [SerializeField] private float speedMultiplier = 1f;
+        [SerializeField] public float speedMultiplier = 1f;
         [SerializeField] private float inertiaMultiplier = 1;
         [SerializeField] private float jumpForce = 5f;
         [SerializeField] private float sprintSpeedMultiplier = 1f;
