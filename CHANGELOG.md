@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.1] - 2025-07-18
+### Added
+- Added `TopDownCam` script for top-down camera functionality, supporting smooth tracking and adjustable camera height.
+
+---
+
 ## [Unreleased]
 ### Planned
 - Create a 2D version of the movement system.
