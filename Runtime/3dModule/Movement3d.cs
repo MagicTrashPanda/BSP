@@ -20,7 +20,7 @@ namespace _3dModule
         [SerializeField] private float targetSpeed;
    
         [Header("Movement Modifiers")]
-        [SerializeField] private float speedMultiplier;
+        [SerializeField] private float speedMultiplier = 1f;
         [SerializeField] private float inertiaMultiplier = 1;
         [SerializeField] private float jumpForce = 5f;
         [SerializeField] private float sprintSpeedMultiplier = 1f;
@@ -102,9 +102,9 @@ namespace _3dModule
 
         void SpeedCalculation(float directionalSpeed, string direction)
         {
-            if(!speedSmoothingEnabled)
+            if(speedSmoothingEnabled)
             {
-                speedMultiplier = 1f;
+                speedMultiplier = 0;
             }
             targetSpeed = speedMultiplier * baseSpeed * directionalSpeed * sprintSpeedMultiplier;
             Vector3 velocity = rb.linearVelocity;
