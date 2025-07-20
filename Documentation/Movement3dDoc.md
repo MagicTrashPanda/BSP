@@ -6,7 +6,7 @@ The `Movement3d` script provides a robust 3D movement system for player-controll
 
 ## Features
 
-- **Directional Movement**: Move the player using WASD keys.
+- **Directional Movement**: Move the player using WASD keys and arrow keys.
 - **Jumping**: Allows the player to jump when grounded.
 - **Sprinting**: Increases movement speed when the sprint key is held.
 - **Speed Smoothing**: Smooth acceleration and deceleration for more realistic movement.
