@@ -1,6 +1,6 @@
 {
     "name": "com.gamejamhq.bsp",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "displayName": "BSP",
     "description": "This is a Basic Script Package designed to cut down on coding time",
     "unity": "6000.0",

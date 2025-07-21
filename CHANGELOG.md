@@ -25,6 +25,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.3] - 2025-07-20
+### Added
+- Changed rotation lock to only y and z planes for `AlwaysUpSprite` script.
+
+---
+
 ## [Unreleased]
 ### Planned
 - Create a 2D version of the movement system.
